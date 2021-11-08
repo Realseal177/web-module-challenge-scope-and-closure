@@ -29,10 +29,17 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   
   1. What is the difference between counter1 and counter2?
   
+  A. counter1 is the actual callback function because it is passed in  
+
   2. Which of the two uses a closure? How can you tell?
-  
+
+  A counter1 uses closure because it reaches into counterMaker and uses 
+
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+
+  A. counter2 is a simple adding machine that calls a variable outside its scope. counter 1 would be preferable if you are trying to use it as a callback function as everything is within its scope. It has been turned into a variable with 'const counter1 = counterMaker()', so the whole thing can be passed as an argument. 
+
 */
 
 // counter1 code
@@ -62,9 +69,12 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  let points = Math.floor(Math.random() * 3);
+  return points;
 }
+
+console.log(inning());
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -81,19 +91,29 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inningcb, number){
+
+  return {
+    Home: inningcb(),
+    Away: inningcb(),
+  }
 }
+
+console.log(finalScore(inning, 9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningcb) {
+  
+  return {
+    Home: inningcb(),
+    Away: inningcb(),
+  }
 }
-
+console.log(getInningScore(inning));
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
